@@ -66,8 +66,10 @@ protected:
 	Common::U32StringArray	_cleanedList;
 	ListDataArray	_dataList;
 	Common::Array<int>	_listIndex;
+	Common::Array<int> _selectedItems; 
 	bool			_editable;
 	bool			_editMode;
+	bool            _multiSelectionMode;
 	NumberingMode	_numberingMode;
 	int				_currentPos;
 	int				_entriesPerPage;
@@ -98,6 +100,7 @@ protected:
 
 	FilterMatcher	_filterMatcher;
 	void			*_filterMatcherArg;
+	 
 public:
 	ListWidget(Dialog *boss, const Common::String &name, const Common::U32String &tooltip = Common::U32String(), uint32 cmd = 0);
 	ListWidget(Dialog *boss, int x, int y, int w, int h, bool scale, const Common::U32String &tooltip = Common::U32String(), uint32 cmd = 0);
@@ -136,6 +139,10 @@ public:
 	// Made startEditMode/endEditMode for SaveLoadChooser
 	void startEditMode() override;
 	void endEditMode() override;
+
+	/// Returns true if the list is currently in edit mode
+	void setMultiSelectionMode(bool enabled) { _multiSelectionMode = enabled; }
+	bool isMultiSelectionMode() const { return _multiSelectionMode; }
 
 	void setFilter(const Common::U32String &filter, bool redraw = true);
 

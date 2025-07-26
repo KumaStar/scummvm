@@ -48,6 +48,7 @@ ListWidget::ListWidget(Dialog *boss, const Common::String &name, const Common::U
 	setFlags(WIDGET_ENABLED | WIDGET_CLEARBG | WIDGET_RETAIN_FOCUS | WIDGET_WANT_TICKLE | WIDGET_TRACK_MOUSE);
 	_type = kListWidget;
 	_editMode = false;
+	_multiSelectionMode = false;
 	_numberingMode = kListNumberingOne;
 	_currentPos = 0;
 	_selectedItem = -1;
