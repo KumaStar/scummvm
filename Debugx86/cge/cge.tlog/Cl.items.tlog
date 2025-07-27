@@ -1,0 +1,15 @@
+C:\Users\motap\dev\orgs\scummvm\engines\cge\bitmap.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\bitmap.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\cge.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\cge.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\cge_main.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\cge_main.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\console.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\console.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\events.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\events.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\fileio.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\fileio.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\game.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\game.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\metaengine.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\metaengine.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\snail.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\snail.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\sound.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\sound.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\talk.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\talk.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\text.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\text.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\vga13h.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\vga13h.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\vmenu.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\vmenu.obj
+C:\Users\motap\dev\orgs\scummvm\engines\cge\walk.cpp;C:\Users\motap\dev\orgs\scummvm\Debugx86\cge\dists\msvc\engines\cge\walk.obj

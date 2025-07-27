@@ -1334,6 +1334,17 @@ void LauncherSimple::handleCommand(CommandSender *sender, uint32 cmd, uint32 dat
 }
 
 void LauncherSimple::updateButtons() {
+	if (_list->isMultiSelectionMode()) {
+		// Disable buttons not allowed in multi-select
+		_startButton->setEnabled(false);
+		_editButton->setEnabled(false);
+		_loadButton->setEnabled(false);
+		// Only these remain enabled
+		_removeButton->setEnabled(true);
+		return;
+	}
+
+	// Default single-selection logic
 	bool enable = (_list->getSelected() >= 0);
 
 	_startButton->setEnabled(enable);

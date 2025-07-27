@@ -1,0 +1,4 @@
+^C:\USERS\MOTAP\DEV\ORGS\SCUMMVM\GRAPHICS\SCALER\HQ2X_I386.ASM
+nasm.exe -f win32 -g -o "Debugx86\scummvm\graphics_scaler_hq2x_i386.obj" "C:\Users\motap\dev\orgs\scummvm\graphics\scaler\hq2x_i386.asm"
+^C:\USERS\MOTAP\DEV\ORGS\SCUMMVM\GRAPHICS\SCALER\HQ3X_I386.ASM
+nasm.exe -f win32 -g -o "Debugx86\scummvm\graphics_scaler_hq3x_i386.obj" "C:\Users\motap\dev\orgs\scummvm\graphics\scaler\hq3x_i386.asm"
