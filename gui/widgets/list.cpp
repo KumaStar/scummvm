@@ -91,6 +91,7 @@ ListWidget::ListWidget(Dialog *boss, int x, int y, int w, int h, bool scale, con
 	setFlags(WIDGET_ENABLED | WIDGET_CLEARBG | WIDGET_RETAIN_FOCUS | WIDGET_WANT_TICKLE);
 	_type = kListWidget;
 	_editMode = false;
+	_multiSelectionMode = false;
 	_numberingMode = kListNumberingOne;
 	_currentPos = 0;
 	_selectedItem = -1;
@@ -514,7 +515,7 @@ void ListWidget::receivedFocusWidget() {
 
 	// Redraw the widget so the selection color will change
 	markAsDirty();
-}
+}     
 
 void ListWidget::lostFocusWidget() {
 	_inversion = ThemeEngine::kTextInversion;
@@ -682,6 +683,40 @@ void ListWidget::scrollToEnd() {
 	_scrollBar->_currentPos = _currentPos;
 	_scrollBar->recalc();
 	_scrollBar->markAsDirty();
+}
+
+void ListWidget::updateMultiSelectionMode() {
+	_multiSelectionMode = (_selectedItems.size() > 1);
+}
+
+bool ListWidget::isSelected(int itemIndex) const {
+	for (uint i = 0; i < _selectedItems.size(); ++i) {
+		if (_selectedItems[i] == itemIndex)
+			return true;
+	}
+	return false;
+}
+
+void ListWidget::addSelectedItem(int itemIndex) {
+	// Avoid duplicates
+	for (uint i = 0; i < _selectedItems.size(); ++i) {
+		if (_selectedItems[i] == itemIndex)
+			return;
+	}
+	_selectedItems.push_back(itemIndex);
+}
+
+void ListWidget::removeSelectedItem(int itemIndex) {
+	for (uint i = 0; i < _selectedItems.size(); ++i) {
+		if (_selectedItems[i] == itemIndex) {
+			_selectedItems.remove_at(i);
+			break;
+		}
+	}
+}
+
+void ListWidget::clearSelectedItems() {
+	_selectedItems.clear();
 }
 
 void ListWidget::startEditMode() {
