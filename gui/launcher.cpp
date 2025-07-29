@@ -1339,7 +1339,7 @@ void LauncherSimple::updateButtons() {
 		_startButton->setEnabled(false);
 		_editButton->setEnabled(false);
 		_loadButton->setEnabled(false);
-		// Only these remain enabled
+
 		_removeButton->setEnabled(true);
 		return;
 	}

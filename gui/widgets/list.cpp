@@ -1,4 +1,4 @@
-/* ScummVM - Graphic Adventure Engine
+﻿/* ScummVM - Graphic Adventure Engine
  *
  * ScummVM is the legal property of its developers, whose names
  * are too numerous to list here. Please refer to the COPYRIGHT
@@ -257,18 +257,31 @@ void ListWidget::handleMouseDown(int x, int y, int button, int clickCount) {
 	if (!isEnabled())
 		return;
 
-	// First check whether the selection changed
 	int newSelectedItem = findItem(x, y);
-
-	if (_selectedItem != newSelectedItem && newSelectedItem != -1) {
-		if (_editMode)
-			abortEditMode();
-		_selectedItem = newSelectedItem;
-		sendCommand(kListSelectionChangedCmd, _selectedItem);
+	updateMultiSelectionMode();
+	 
+	if (_multiSelectionMode ) {
+		if (newSelectedItem != -1) {
+			if (isSelected(newSelectedItem)) {
+				removeSelectedItem(newSelectedItem);
+			} else {
+				addSelectedItem(newSelectedItem);
+			}
+		} else {
+			clearSelectedItems();
+		}
+	} else {
+		if ((newSelectedItem == -1) && (_selectedItem != -1)) {
+			if (_editMode) {
+				abortEditMode();
+			}
+			_selectedItem = newSelectedItem;
+			sendCommand(kListSelectionChangedCmd, _selectedItem);
+		}
 	}
 
 	// Notify clients if an item was clicked
-	if (newSelectedItem >= 0) {
+	if (!_multiSelectionMode && newSelectedItem >= 0) {
 		sendCommand(kListItemSingleClickedCmd, _selectedItem);
 	}
 
@@ -560,8 +573,13 @@ void ListWidget::drawWidget() {
 		ThemeEngine::TextInversionState inverted = ThemeEngine::kTextInversionNone;
 
 		// Draw the selected item inverted, on a highlighted background.
-		if (_selectedItem == pos)
-			inverted = _inversion;
+		if (_multiSelectionMode) {
+			if (isSelected(pos))
+				inverted = _inversion;
+		} else {
+			if (_selectedItem == pos)
+				inverted = _inversion;
+		}
 
 		// Get state for drawing the item text
 		ThemeEngine::WidgetStateInfo itemState = getItemState(pos);
@@ -686,11 +704,11 @@ void ListWidget::scrollToEnd() {
 }
 
 void ListWidget::updateMultiSelectionMode() {
-	_multiSelectionMode = (_selectedItems.size() > 1);
+	_multiSelectionMode = (_selectedItems.size() >= 1);
 }
 
 bool ListWidget::isSelected(int itemIndex) const {
-	for (uint i = 0; i < _selectedItems.size(); ++i) {
+	for (int i = 0; i < _selectedItems.size(); ++i) {
 		if (_selectedItems[i] == itemIndex)
 			return true;
 	}
@@ -698,25 +716,28 @@ bool ListWidget::isSelected(int itemIndex) const {
 }
 
 void ListWidget::addSelectedItem(int itemIndex) {
-	// Avoid duplicates
-	for (uint i = 0; i < _selectedItems.size(); ++i) {
-		if (_selectedItems[i] == itemIndex)
-			return;
-	}
-	_selectedItems.push_back(itemIndex);
+    // Avoid duplicates
+    for (int i = 0; i < _selectedItems.size(); ++i) {
+        if (_selectedItems[i] == itemIndex)
+            return;
+    }
+    _selectedItems.push_back(itemIndex);
+    updateMultiSelectionMode();
 }
 
 void ListWidget::removeSelectedItem(int itemIndex) {
-	for (uint i = 0; i < _selectedItems.size(); ++i) {
-		if (_selectedItems[i] == itemIndex) {
-			_selectedItems.remove_at(i);
-			break;
-		}
-	}
+    for (int i = 0; i < _selectedItems.size(); ++i) {
+        if (_selectedItems[i] == itemIndex) {
+            _selectedItems.remove_at(i);
+            break;
+        }
+    }
+    updateMultiSelectionMode();
 }
 
 void ListWidget::clearSelectedItems() {
-	_selectedItems.clear();
+    _selectedItems.clear();
+    updateMultiSelectionMode();
 }
 
 void ListWidget::startEditMode() {

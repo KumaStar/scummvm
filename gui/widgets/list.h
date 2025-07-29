@@ -139,7 +139,7 @@ public:
 	void startEditMode() override;
 	void endEditMode() override;
 
-	/// Returns true if the list is currently in edit mode
+	//multi selection mode
 	void setMultiSelectionMode(bool enabled) { _multiSelectionMode = enabled; }
 	const Common::Array<int> &getSelectedItems() const { return _selectedItems; }
 	void updateMultiSelectionMode();
